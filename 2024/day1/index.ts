@@ -74,4 +74,16 @@ async function part1 () {
     Bun.write(answerPath, JSON.stringify(dist))
 }
 
-part1()
+// part1()
+
+async function part2 () {
+    const {left, right} = await parseInputToList();
+    // Calc distance and output
+    const dist = findSimilarity(left, right);
+    
+    const answerPath = import.meta.dir + '/p2_answer.txt';
+
+    Bun.write(answerPath, JSON.stringify(dist))
+}
+
+// part2();
