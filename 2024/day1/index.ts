@@ -18,6 +18,21 @@ export function findSumDistance(leftList: number[], rightList: number[]): number
     return sumDist;
 };
 
+export function findSimilarity(leftList: number[], rightList: number[]): number {
+    let similarity: number = 0;
+    // Sort lists ascending order
+    leftList.sort();
+    rightList.sort();
+    // Traverse lists, find occurance in 2nd list, compute similarity
+    for (let i = 0; i < leftList.length; i++) {
+        let leftNo = leftList[i];
+        let countInRight = rightList.filter(item => item === leftNo).length;
+
+        similarity += (leftNo * countInRight)  
+    }
+    return similarity;
+}
+
 async function part1 () {
     const inputPath = import.meta.dir + '/p1_input.txt';
     let file = await read(inputPath);
