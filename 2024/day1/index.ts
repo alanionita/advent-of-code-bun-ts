@@ -33,7 +33,12 @@ export function findSimilarity(leftList: number[], rightList: number[]): number 
     return similarity;
 }
 
-async function part1 () {
+type IParseInputToList = {
+    left: number[],
+    right: number[]
+}
+
+async function parseInputToList (): Promise<IParseInputToList> {
     const inputPath = import.meta.dir + '/p1_input.txt';
     let file = await read(inputPath);
     
@@ -56,8 +61,13 @@ async function part1 () {
         return Number(right);
     }).sort()
 
+    return {left: leftItems, right: rightItems}
+} 
+
+async function part1 () {
+    const {left, right} = await parseInputToList();
     // Calc distance and output
-    const dist = findSumDistance(leftItems, rightItems);
+    const dist = findSumDistance(left, right);
     
     const answerPath = import.meta.dir + '/p1_answer.txt';
 
